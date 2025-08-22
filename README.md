@@ -65,8 +65,8 @@ sudo ./ip_monitor.sh 1234,5678
 # Save output to file
 sudo ./ip_monitor.sh --output my_log.txt 1234,5678
 
-# Enable verbose output
-sudo ./ip_monitor.sh --verbose $(pgrep Chrome | tr '\n' ',')
+# Pass many pids
+sudo ./ip_monitor.sh $(pgrep Chrome | tr '\n' ',')
 
 # Keep the generated DTrace script
 sudo ./ip_monitor.sh --keep-script 1234
