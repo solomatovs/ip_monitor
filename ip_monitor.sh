@@ -6,18 +6,16 @@ set -euo pipefail
 PID_LIST=""
 OUTPUT_FILE="ips_monitor_$(date +%Y%m%d_%H%M%S).log"
 REALTIME=false
-VERBOSE=false
 KEEP_SCRIPT=false
 
 # Simple argument parsing
 while [[ $# -gt 0 ]]; do
     case $1 in
         --output) OUTPUT_FILE="$2"; shift 2 ;;
-        --verbose) VERBOSE=true; shift ;;
         --keep-script) KEEP_SCRIPT=true; shift ;;
         --help) 
             echo "Usage: $0 <PID1,PID2> [options]"
-            echo "Options: --output FILE, --verbose, --keep-script"
+            echo "Options: --output FILE, --keep-script"
             exit 0 ;;
         *) PID_LIST="$1"; shift ;;
     esac
@@ -58,8 +56,6 @@ ROOT_PIDS_LIST="${VALID_PIDS[*]}"
 
 # Creating the final script directly
 GENERATED_SCRIPT="generated_ips_monitor_$.d"
-
-[[ "$VERBOSE" == "true" ]] && echo "Creating script: $GENERATED_SCRIPT"
 
 # Create script directly, using template as base
 cat > "$GENERATED_SCRIPT" << EOF

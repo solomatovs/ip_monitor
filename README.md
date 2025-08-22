@@ -7,7 +7,7 @@ A powerful network connection monitoring tool that tracks IP addresses and netwo
 - 🔍 **Process Tracking**: Monitor specific processes by PID and automatically track all their child processes
 - 🌐 **Network Monitoring**: Capture IPv4/IPv6 connections, socket operations, and data transfers
 - 📊 **Real-time Analysis**: View network activity in real-time or save to log files
-- 🎯 **Targeted Monitoring**: Focus on specific applications like Claude, Chrome, Firefox, or any process
+- 🎯 **Targeted Monitoring**: Focus on specific applications like Chrome, Firefox, Yandex, or any process
 - 📈 **Statistics**: Get periodic summaries and connection counts
 - 🔧 **Easy Setup**: Simple Makefile for common monitoring tasks
 
@@ -32,26 +32,23 @@ A powerful network connection monitoring tool that tracks IP addresses and netwo
 The easiest way to use the IP monitor is through the provided Makefile:
 
 ```bash
-# Monitor Claude processes in real-time
-make monitor-claude
+# Monitor Chrome processes
+make chrome
 
-# Monitor Chrome processes in real-time  
-make monitor-chrome
+# Monitor Firefox processes
+make firefox
 
-# Monitor Firefox processes in real-time
-make monitor-firefox
+# Monitor Yandex processes
+make yandex
 
 # Monitor a specific PID
-make monitor-pid PID=1234
+make pid PID=1234,3453,222
 
 # Monitor any process by name
-make monitor-custom PROC=node
-
-# Save Claude monitoring to log file
-make log-claude
+make app PROC=node
 
 # Show available processes
-make show-processes
+make show PROC=chrome
 
 # See all available options
 make help
@@ -62,24 +59,22 @@ make help
 You can also run the script directly for more control:
 
 ```bash
-# Monitor specific PIDs in real-time
-sudo ./ips_monitor.sh --realtime 1234,5678
+# Monitor specific PIDs
+sudo ./ip_monitor.sh 1234,5678
 
 # Save output to file
-sudo ./ips_monitor.sh --output my_log.txt 1234,5678
+sudo ./ip_monitor.sh --output my_log.txt 1234,5678
 
 # Enable verbose output
-sudo ./ips_monitor.sh --verbose --realtime 1234
+sudo ./ip_monitor.sh --verbose $(pgrep Chrome | tr '\n' ',')
 
 # Keep the generated DTrace script
-sudo ./ips_monitor.sh --keep-script --realtime 1234
+sudo ./ip_monitor.sh --keep-script 1234
 ```
 
 ### Script Options
 
-- `--realtime`: Display output in real-time instead of saving to file
 - `--output FILE`: Specify output file name (default: timestamped file)
-- `--verbose`: Enable verbose output during setup
 - `--keep-script`: Don't delete the generated DTrace script after execution
 - `--help`: Show usage information
 
@@ -139,33 +134,25 @@ Total IP connections: 3
 
 ### Monitor Web Browser Activity
 ```bash
-make monitor-chrome
+make chrome
 # or
-make monitor-firefox
+make firefox
 ```
 
 ### Monitor Development Tools
 ```bash
-make monitor-custom PROC=node
-make monitor-custom PROC=python
-```
-
-### Debug Network Issues
-```bash
-# Monitor and save to log for analysis
-make log-claude
-# Then examine the log file in ./logs/
+make monitor-app PROC=node
+make monitor-app PROC=python
 ```
 
 ### Security Auditing
 ```bash
 # Monitor a suspicious process
-make monitor-pid PID=suspicious_pid
+make pid PID=suspicious_pid
 ```
-
 ## Log Files
 
-When not using `--realtime`, logs are saved with timestamps:
+logs are saved with timestamps:
 - Default location: current directory
 - Custom location: use `--output filename`
 - Makefile logs: saved to `./logs/` directory
@@ -185,13 +172,13 @@ Log files include:
 
 ### No Processes Found
 ```bash
-❌ No Claude processes found
+❌ No <proc> processes found
 ```
 **Solution**: Check if the process is running:
 ```bash
-make show-processes
+make show PROC=chrome
 # or
-ps aux | grep claude
+pgrep chrome
 ```
 
 ### DTrace Issues
@@ -204,12 +191,11 @@ If DTrace fails to start, ensure:
 
 ```
 .
-├── ips_monitor.sh          # Main monitoring script
+├── ip_monitor.sh          # Main monitoring script
 ├── Makefile               # Easy-to-use commands
 ├── README.md              # This file
 └── logs/                  # Log files (created by make setup)
-    ├── claude_*.log
-    ├── chrome_*.log
+    ├── *.log
     └── ...
 ```
 

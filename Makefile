@@ -89,7 +89,7 @@ show:
 	fi
 	@echo "🔍 Looking for $(PROC) processes..."
 
-	@echo "Claude processes:"
+	@echo "$(PROC) processes:"
 	@pgrep -l -i $(PROC) 2>/dev/null || echo "  (none found)"
 
 # Clean old log files
