@@ -100,25 +100,141 @@ sudo ./ip_monitor.sh --keep-script 1234
 ## Example Output
 
 ```
-=== Monitoring root PIDs and their descendants ===
-=== Root PIDs: 1234 5678 ===
-Initialization complete. Starting monitoring...
+solomatovs:ip_monitor solomatovs$ make yandex
+Setting up IP Monitor...
+✅ Setup complete. Logs will be saved to ./logs/
+🔍 Looking for Yandex processes...
+/Applications/Xcode.app/Contents/Developer/usr/bin/make app PROC=yandex
+Setting up IP Monitor...
+✅ Setup complete. Logs will be saved to ./logs/
+🔍 Looking for yandex processes...
+📡 Monitoring yandex PIDs: 724,833,1634,1706,1707,1726,1729,3847,8725,21805,21806,42994,49765,49821,50730,53421,53521,65193,65915,74679
+Password:
+Sorry, try again.
+Password:
+=== Checking root PIDs ===
+✅ Root PID 724: /Applications/Yandex.app/Contents/MacOS/Yandex
+✅ Root PID 833: /Applications/Yandex.app/Contents/Frameworks/Yandex Framework.framework/Versions/25.6.3.358/Helpers/Yandex Helper (GPU).app/Contents/MacOS/Yandex Helper (GPU)
+✅ Root PID 1634: /Applications/Yandex.app/Contents/Frameworks/Yandex Framework.framework/Versions/25.6.3.358/Helpers/Yandex Helper.app/Contents/MacOS/Yandex Helper
+✅ Root PID 1706: /Applications/Yandex.app/Contents/Frameworks/Yandex Framework.framework/Versions/25.6.3.358/Helpers/Yandex Helper (Renderer).app/Contents/MacOS/Yandex Helper (Renderer)
+✅ Root PID 1707: /Applications/Yandex.app/Contents/Frameworks/Yandex Framework.framework/Versions/25.6.3.358/Helpers/Yandex Helper (Renderer).app/Contents/MacOS/Yandex Helper (Renderer)
+✅ Root PID 1726: /Applications/Yandex.app/Contents/Frameworks/Yandex Framework.framework/Versions/25.6.3.358/Helpers/Yandex Helper.app/Contents/MacOS/Yandex Helper
+✅ Root PID 1729: /Applications/Yandex.app/Contents/Frameworks/Yandex Framework.framework/Versions/25.6.3.358/Helpers/Yandex Helper (Renderer).app/Contents/MacOS/Yandex Helper (Renderer)
+✅ Root PID 3847: /Applications/Yandex.app/Contents/Frameworks/Yandex Framework.framework/Versions/25.6.3.358/Helpers/Yandex Helper.app/Contents/MacOS/Yandex Helper
+✅ Root PID 8725: /Applications/Yandex.app/Contents/Frameworks/Yandex Framework.framework/Versions/25.6.3.358/Helpers/Yandex Helper (Renderer).app/Contents/MacOS/Yandex Helper (Renderer)
+✅ Root PID 21805: /Applications/Yandex.app/Contents/Frameworks/Yandex Framework.framework/Versions/25.6.3.358/Helpers/Yandex Helper.app/Contents/MacOS/Yandex Helper
+✅ Root PID 21806: /Applications/Yandex.app/Contents/Frameworks/Yandex Framework.framework/Versions/25.6.3.358/Helpers/Yandex Helper (Plugin).app/Contents/MacOS/Yandex Helper (Plugin)
+✅ Root PID 42994: /Applications/Yandex.app/Contents/Frameworks/Yandex Framework.framework/Versions/25.6.3.358/Helpers/Yandex Helper (Renderer).app/Contents/MacOS/Yandex Helper (Renderer)
+✅ Root PID 49765: /Applications/Yandex.app/Contents/Frameworks/Yandex Framework.framework/Versions/25.6.3.358/Helpers/Yandex Helper (Renderer).app/Contents/MacOS/Yandex Helper (Renderer)
+✅ Root PID 49821: /Applications/Yandex.app/Contents/Frameworks/Yandex Framework.framework/Versions/25.6.3.358/Helpers/Yandex Helper (Renderer).app/Contents/MacOS/Yandex Helper (Renderer)
+✅ Root PID 50730: /Applications/Yandex.app/Contents/Frameworks/Yandex Framework.framework/Versions/25.6.3.358/Helpers/Yandex Helper (Renderer).app/Contents/MacOS/Yandex Helper (Renderer)
+✅ Root PID 53421: /Applications/Yandex.app/Contents/Frameworks/Yandex Framework.framework/Versions/25.6.3.358/Helpers/Yandex Helper (Renderer).app/Contents/MacOS/Yandex Helper (Renderer)
+✅ Root PID 53521: /Applications/Yandex.app/Contents/Frameworks/Yandex Framework.framework/Versions/25.6.3.358/Helpers/Yandex Helper (Renderer).app/Contents/MacOS/Yandex Helper (Renderer)
+✅ Root PID 65193: /Applications/Yandex.app/Contents/Frameworks/Yandex Framework.framework/Versions/25.6.3.358/Helpers/Yandex Helper (Renderer).app/Contents/MacOS/Yandex Helper (Renderer)
+✅ Root PID 65915: /Applications/Yandex.app/Contents/Frameworks/Yandex Framework.framework/Versions/25.6.3.358/Helpers/Yandex Helper (Renderer).app/Contents/MacOS/Yandex Helper (Renderer)
+✅ Root PID 74679: /Applications/Yandex.app/Contents/Frameworks/Yandex Framework.framework/Versions/25.6.3.358/Helpers/Yandex Helper (Renderer).app/Contents/MacOS/Yandex Helper (Renderer)
+=== Monitoring settings ===
+Root PIDs: 724 833 1634 1706 1707 1726 1729 3847 8725 21805 21806 42994 49765 49821 50730 53421 53521 65193 65915 74679
+Output file: ./logs/20250822_183909.log
+==============================
 
-➕ NEW_DESCENDANT: PID 9999 created by process 1234
-SOCKET [PID 1234]: domain=2, type=1, protocol=6
-  -> AF_INET (IPv4)
-  -> SOCK_STREAM (TCP)
-SOCKET_SUCCESS [PID 1234]: FD=5
+Starting monitoring of root PIDs and their descendants...
+Press Ctrl+C to stop
 
-CONNECT_ENTRY [PID 1234]: FD=5, addr_len=16
-  -> 🎯 IPv4: 142.250.191.14:443
-✅ CONNECT_SUCCESS [PID 1234]
+dtrace: script 'generated_ips_monitor_$.d' matched 176 probes
+^C
+=== Results ===
+📄 File: ./logs/20250822_183909.log
+📊 Lines:     1608
 
-WRITE [PID 1234]: FD=5, bytes=517
-READ [PID 1234]: FD=5, bytes=1024
+🎯 IP connections:
+  36 IPv4: 192.168.90.1:53
+   3 IPv4: 213.180.193.234:443
+   3 IPv4: 173.194.221.101:443
+   2 IPv4: 87.250.254.106:443
+   2 IPv4: 64.233.164.94:443
+   2 IPv4: 64.233.164.103:443
+   2 IPv4: 213.180.204.232:443
+   2 IPv4: 173.194.221.157:443
+   1 IPv4: 87.250.251.183:443
+   1 IPv4: 74.125.205.95:443
+   1 IPv4: 64.233.165.102:443
+   1 IPv4: 64.233.161.94:443
+   1 IPv4: 5.255.255.77:443
+   1 IPv4: 192.168.90.6:9832
+   1 IPv4: 192.168.90.6:8794
+   1 IPv4: 192.168.90.6:63553
+   1 IPv4: 192.168.90.6:62976
+   1 IPv4: 192.168.90.6:62571
+   1 IPv4: 192.168.90.6:61758
+   1 IPv4: 192.168.90.6:60819
+   1 IPv4: 192.168.90.6:57472
+   1 IPv4: 192.168.90.6:57287
+   1 IPv4: 192.168.90.6:57219
+   1 IPv4: 192.168.90.6:57098
+   1 IPv4: 192.168.90.6:54178
+   1 IPv4: 192.168.90.6:52925
+   1 IPv4: 192.168.90.6:52727
+   1 IPv4: 192.168.90.6:52509
+   1 IPv4: 192.168.90.6:52494
+   1 IPv4: 192.168.90.6:47006
+   1 IPv4: 192.168.90.6:45151
+   1 IPv4: 192.168.90.6:41019
+   1 IPv4: 192.168.90.6:40735
+   1 IPv4: 192.168.90.6:38766
+   1 IPv4: 192.168.90.6:37818
+   1 IPv4: 192.168.90.6:35964
+   1 IPv4: 192.168.90.6:34613
+   1 IPv4: 192.168.90.6:34464
+   1 IPv4: 192.168.90.6:33129
+   1 IPv4: 192.168.90.6:32767
+   1 IPv4: 192.168.90.6:31658
+   1 IPv4: 192.168.90.6:31029
+   1 IPv4: 192.168.90.6:3059
+   1 IPv4: 192.168.90.6:30110
+   1 IPv4: 192.168.90.6:28852
+   1 IPv4: 192.168.90.6:27220
+   1 IPv4: 192.168.90.6:16335
+   1 IPv4: 192.168.90.6:14830
+   1 IPv4: 192.168.90.6:14693
+   1 IPv4: 192.168.90.6:14662
+   1 IPv4: 192.168.90.6:14602
+   1 IPv4: 192.168.90.6:14493
+   1 IPv4: 192.168.90.6:12757
+   1 IPv4: 192.168.90.6:12129
+   1 IPv4: 192.168.90.6:10867
+   1 IPv4: 185.180.200.2:443
+   1 IPv4: 173.194.73.139:443
+   1 IPv4: 173.194.221.94:443
+   1 IPv4: 140.82.121.3:443
+   1 IPv4: 140.82.114.21:443
+   1 IPv4: 108.177.14.94:443
 
-=== ⏰ MINUTE STATISTICS ===
-Total IP connections: 3
+🎯 Mikrotik firewall list:
+/ip firewall address-list
+add address=108.177.14.94 list=vpn_traffik
+add address=140.82.114.21 list=vpn_traffik
+add address=140.82.121.3 list=vpn_traffik
+add address=173.194.221.101 list=vpn_traffik
+add address=173.194.221.157 list=vpn_traffik
+add address=173.194.221.94 list=vpn_traffik
+add address=173.194.73.139 list=vpn_traffik
+add address=185.180.200.2 list=vpn_traffik
+add address=192.168.90.1 list=vpn_traffik
+add address=192.168.90.6 list=vpn_traffik
+add address=213.180.193.234 list=vpn_traffik
+add address=213.180.204.232 list=vpn_traffik
+add address=5.255.255.77 list=vpn_traffik
+add address=64.233.161.94 list=vpn_traffik
+add address=64.233.164.103 list=vpn_traffik
+add address=64.233.164.94 list=vpn_traffik
+add address=64.233.165.102 list=vpn_traffik
+add address=74.125.205.95 list=vpn_traffik
+add address=87.250.251.183 list=vpn_traffik
+add address=87.250.254.106 list=vpn_traffik
+
+📋 Unique ips:       20
+make: *** [yandex] Interrupt: 2
 ```
 
 ## Understanding the Output
